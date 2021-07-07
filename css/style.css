@@ -16,8 +16,7 @@ html {
 }
 
 .nav {
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   font-size: 0;
   width: 100%;
