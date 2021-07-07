@@ -16,8 +16,8 @@ navList_ul.addEventListener('touchmove', function(event) {
   if (event.targetTouches.length == 1) {
     var touch = event.targetTouches[0];
     // Place element where the finger is
-    obj.style.left = touch.pageX + 'px';
-    obj.style.top = touch.pageY + 'px';
+    navList_ul.style.left = touch.pageX + 'px';
+    navList_ul.style.top = touch.pageY + 'px';
   }
 }, false);
 /*
