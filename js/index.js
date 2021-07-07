@@ -11,7 +11,7 @@ navItem_li.forEach( thisNavItem_li =>{
         identifier_div.style.left = thisNavItem_li.offsetLeft + 'px';
     });
 });
-window.addEventListener('scroll', throttle(callback, 1000));
+window.addEventListener('scroll', throttle(callback, 500));
 
 function throttle(fn, wait) {
   var time = Date.now();
@@ -33,11 +33,7 @@ function callback(){
                 navLink_a.forEach(navLink_a => {
                     if (navLink_a.attributes.href.value == goTo ) {
                         console.log('hi')
-                        navWrapper_div.scrollTo({
-                            top: 0,
-                            left: navLink_a.parentElement.offsetLeft,
-                            behavior: 'smooth'
-                          }); 
+                        navWrapper_div.scrollLeft =  navLink_a.parentElement.offsetLeft;
                         //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
                         // navLink_a.parentElement.scrollIntoView({
                         //     behavior: 'smooth',  inline: "nearest", block: "nearest",
