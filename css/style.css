@@ -24,10 +24,9 @@ html {
 }
 
 .nav_wrapper {
-  overflow-x: hidden;
+  overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-behavior: smooth;
   position: relative;
 }
 
@@ -37,6 +36,7 @@ html {
 
 .nav_item {
   display: inline-block;
+  width: 25vw;
 }
 
 .nav_link {

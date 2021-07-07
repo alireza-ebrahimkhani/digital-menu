@@ -19,10 +19,10 @@ html{
     width: 100%;
     display: inline-block;
     &_wrapper{
-        overflow-x: hidden;
+        overflow-x: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        scroll-behavior: smooth;
+        //scroll-behavior: smooth;
         position: relative;
     }
     &_wrapper::-webkit-scrollbar {
@@ -30,6 +30,8 @@ html{
     }
     &_item{
         display: inline-block;
+
+        width: 25vw;
     }
     &_link{
         display: block;

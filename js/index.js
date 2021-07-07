@@ -11,17 +11,48 @@ navItem_li.forEach( thisNavItem_li =>{
         identifier_div.style.left = thisNavItem_li.offsetLeft + 'px';
     });
 });
-navList_ul.addEventListener('touchmove', function(event) {
-  // If there's exactly one finger inside this element
-  if (event.targetTouches.length == 1) {
-    var touch = event.targetTouches[0];
-    // Place element where the finger is
-    navList_ul.style.left = touch.pageX + 'px';
-    navList_ul.style.top = touch.pageY + 'px';
+window.addEventListener('scroll', throttle(callback, 1000));
+
+function throttle(fn, wait) {
+  var time = Date.now();
+  return function() {
+    if ((time + wait - Date.now()) < 0) {
+        fn();
+        time = Date.now();
+    }
   }
-}, false);
+}
+function callback(){
+    let nowScroll = window.pageYOffset;
+        for (let i = 0; i < section_section.length; i++) {
+            let secStart = section_section[i].offsetTop;
+            let secEnd = section_section[i].scrollHeight + section_section[i].offsetTop;
+            
+            if (nowScroll > secStart && nowScroll < secEnd) {
+                let goTo = section_section[i].dataset.link;
+                navLink_a.forEach(navLink_a => {
+                    if (navLink_a.attributes.href.value == goTo ) {
+                        console.log('hi')
+                        navWrapper_div.scrollTo({
+                            top: 0,
+                            left: navLink_a.parentElement.offsetLeft,
+                            behavior: 'smooth'
+                          }); 
+                        //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
+                        // navLink_a.parentElement.scrollIntoView({
+                        //     behavior: 'smooth',  inline: "nearest", block: "nearest",
+                        // });
+                        identifier_div.style.left = navLink_a.parentElement.offsetLeft + 'px'; 
+                    }
+                })
+            } else {
+                continue;
+            }
+        }
+}
 /*
 window.addEventListener('scroll', function(){
+    setTimeout(function(){
     let nowScroll = window.pageYOffset;
     for (let i = 0; i < section_section.length; i++) {
         let secStart = section_section[i].offsetTop;
@@ -31,8 +62,16 @@ window.addEventListener('scroll', function(){
             let goTo = section_section[i].dataset.link;
             navLink_a.forEach(navLink_a => {
                 if (navLink_a.attributes.href.value == goTo ) {
+                    console.log('hi')
+                    navWrapper_div.scrollTo({
+                        top: 0,
+                        left: navLink_a.parentElement.offsetLeft,
+                        behavior: 'smooth'
+                      }); 
                     //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
-                    navWrapper_div.style.transform ="translateX(" + navLink_a.parentElement.offsetLeft + "px)" 
+                    // navLink_a.parentElement.scrollIntoView({
+                    //     behavior: 'smooth',  inline: "nearest", block: "nearest",
+                    // });
                     identifier_div.style.left = navLink_a.parentElement.offsetLeft + 'px'; 
                 }
             })
@@ -40,7 +79,7 @@ window.addEventListener('scroll', function(){
             continue;
         }
     }
-});
-*/
+}, 10);
+});*/
 //navWrapper_div.scrollLeft = item.offsetLeft;
  
