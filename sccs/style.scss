@@ -19,7 +19,7 @@ html{
     width: 100%;
     display: inline-block;
     &_wrapper{
-        overflow-x: auto;
+        overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
         scroll-behavior: smooth;
