@@ -21,7 +21,10 @@ window.addEventListener('scroll', function(){
             let goTo = section_section[i].dataset.link;
             navLink_a.forEach(navLink_a => {
                 if (navLink_a.attributes.href.value == goTo ) {
-                    navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
+                    //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
+                    navLink_a.parentElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                     identifier_div.style.left = navLink_a.parentElement.offsetLeft + 'px'; 
                 }
             })
@@ -29,6 +32,14 @@ window.addEventListener('scroll', function(){
             continue;
         }
     }
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 });
 //navWrapper_div.scrollLeft = item.offsetLeft;
  
