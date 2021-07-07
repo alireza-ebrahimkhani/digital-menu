@@ -22,7 +22,7 @@ html{
         overflow-x: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        //scroll-behavior: smooth;
+        scroll-behavior: smooth;
         position: relative;
     }
     &_wrapper::-webkit-scrollbar {
