@@ -11,42 +11,6 @@ navItem_li.forEach( thisNavItem_li =>{
         identifier_div.style.left = thisNavItem_li.offsetLeft + 'px';
     });
 });
-window.addEventListener('scroll', throttle(callback, 500));
-
-function throttle(fn, wait) {
-  var time = Date.now();
-  return function() {
-    if ((time + wait - Date.now()) < 0) {
-        fn();
-        time = Date.now();
-    }
-  }
-}
-function callback(){
-    let nowScroll = window.pageYOffset;
-        for (let i = 0; i < section_section.length; i++) {
-            let secStart = section_section[i].offsetTop;
-            let secEnd = section_section[i].scrollHeight + section_section[i].offsetTop;
-            
-            if (nowScroll > secStart && nowScroll < secEnd) {
-                let goTo = section_section[i].dataset.link;
-                navLink_a.forEach(navLink_a => {
-                    if (navLink_a.attributes.href.value == goTo ) {
-                        console.log('hi')
-                        navWrapper_div.scrollLeft =  navLink_a.parentElement.offsetLeft;
-                        //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
-                        // navLink_a.parentElement.scrollIntoView({
-                        //     behavior: 'smooth',  inline: "nearest", block: "nearest",
-                        // });
-                        identifier_div.style.left = navLink_a.parentElement.offsetLeft + 'px'; 
-                    }
-                })
-            } else {
-                continue;
-            }
-        }
-}
-/*
 window.addEventListener('scroll', function(){
     setTimeout(function(){
     let nowScroll = window.pageYOffset;
@@ -58,16 +22,12 @@ window.addEventListener('scroll', function(){
             let goTo = section_section[i].dataset.link;
             navLink_a.forEach(navLink_a => {
                 if (navLink_a.attributes.href.value == goTo ) {
-                    console.log('hi')
+                    
                     navWrapper_div.scrollTo({
                         top: 0,
                         left: navLink_a.parentElement.offsetLeft,
                         behavior: 'smooth'
                       }); 
-                    //navWrapper_div.scrollLeft = navLink_a.parentElement.offsetLeft; 
-                    // navLink_a.parentElement.scrollIntoView({
-                    //     behavior: 'smooth',  inline: "nearest", block: "nearest",
-                    // });
                     identifier_div.style.left = navLink_a.parentElement.offsetLeft + 'px'; 
                 }
             })
@@ -76,6 +36,21 @@ window.addEventListener('scroll', function(){
         }
     }
 }, 10);
-});*/
+});
+function SmoothHorizontalScrolling(e, time, amount, start) {
+    var eAmt = amount / 100;
+    var curTime = 0;
+    var scrollCounter = 0;
+    while (curTime <= time) {
+        window.setTimeout(SHS_B, curTime, e, scrollCounter, eAmt, start);
+        curTime += time / 100;
+        scrollCounter++;
+    }
+}
+
+function SHS_B(e, sc, eAmt, start) {
+    e.scrollLeft = (eAmt * sc) + start;
+}
+SmoothHorizontalScrolling(navWrapper_div, 275, "right");
 //navWrapper_div.scrollLeft = item.offsetLeft;
  

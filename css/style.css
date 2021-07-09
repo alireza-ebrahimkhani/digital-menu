@@ -27,7 +27,6 @@ html {
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-behavior: smooth;
   position: relative;
 }
 
